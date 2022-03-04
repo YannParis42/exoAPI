@@ -1,0 +1,37 @@
+<div *ngIf="randomUser" class="mt-2">
+    <button type="button" class="btn btn-outline-primary" (click)="newProfil()">Nouveau profil</button>
+</div>
+
+
+
+<div *ngIf="randomUser" class="row mt-2 p-0 border border-primary rounded cardId">
+
+    <div class="row m-0 p-0 text-center cardUpper"><strong>République de moi</strong></div>
+
+  <div class="m-2 p-0 row ">
+    <div class=" rounded col-4 p-0">
+      <img class="rounded" src="{{randomUser.picture.large}}" alt="">
+    </div>
+
+    <div class=" col-8 ps-2">
+      <div><strong>Civilité:</strong></div>
+      <div>{{randomUser.name.title}}
+        {{randomUser.name.first}}
+        {{randomUser.name.last}}</div>
+      <div><strong>Date de naissance:</strong></div>
+      <div>{{randomUser.dob.date | date }};
+        {{randomUser.dob.age}} ans</div>
+    </div>
+  </div>
+
+  <div class="row m-0 pb-1 p-0 cardBottom rounded">
+    <div><strong>Email:</strong> {{randomUser.email}}</div>
+    <div><strong>Tel:</strong> {{randomUser.cell}}</div>
+    <div><strong>Adresse:</strong> {{randomUser.location.street.number}} {{randomUser.location.street.name}}
+      {{randomUser.location.city}}</div>
+    <div><strong>Code postal:</strong> {{randomUser.location.postcode}}</div>
+    <div><strong>Etat:</strong> {{randomUser.location.state}}</div>
+    <div><strong>Pays:</strong> {{randomUser.location.country}}</div>
+  </div>
+
+</div>
