@@ -1,37 +1,90 @@
 <div *ngIf="randomUser" class="mt-2">
-    <button type="button" class="btn btn-outline-primary" (click)="newProfil()">Nouveau profil</button>
+  <button type="button" class="me-2 mb-2 btn btn-outline-primary" (click)="newProfil()">Nouveau profil</button>
+  <button type="button" class="me-2 mb-2 btn btn-outline-primary" (click)="savedProfil(randomUser)">Save</button>
+  <button type="button" class="me-2 mb-2 btn btn-outline-primary" (click)="showProfil()">Show saved profil</button>
 </div>
 
 
+<div *ngIf="!this.show; else showPro">
+  <div *ngIf="randomUser" class="row mt-2 p-0 border border-primary rounded cardId">
 
-<div *ngIf="randomUser" class="row mt-2 p-0 border border-primary rounded cardId">
 
     <div class="row m-0 p-0 text-center cardUpper"><strong>République de moi</strong></div>
 
-  <div class="m-2 p-0 row ">
-    <div class=" rounded col-4 p-0">
-      <img class="rounded" src="{{randomUser.picture.large}}" alt="">
+    <div class="m-2 p-0 row ">
+      <div class=" rounded col-4 p-0">
+        <img class="rounded" src="{{randomUser.picture.large}}" alt="">
+      </div>
+      <div class=" col-8 ps-2">
+        <div><strong>Civilité:</strong></div>
+        <div>{{randomUser.name.title}}
+          {{randomUser.name.first}}
+          {{randomUser.name.last}}</div>
+        <div><strong>Date de naissance:</strong></div>
+        <div>{{randomUser.dob.date | date }};
+          {{randomUser.dob.age}} ans</div>
+      </div>
     </div>
 
-    <div class=" col-8 ps-2">
-      <div><strong>Civilité:</strong></div>
-      <div>{{randomUser.name.title}}
-        {{randomUser.name.first}}
-        {{randomUser.name.last}}</div>
-      <div><strong>Date de naissance:</strong></div>
-      <div>{{randomUser.dob.date | date }};
-        {{randomUser.dob.age}} ans</div>
+    <div class="row m-0 pb-1 p-0 cardBottom rounded">
+      <div><strong>Email:</strong> {{randomUser.email}}</div>
+      <div><strong>Tel:</strong> {{randomUser.cell}}</div>
+      <div><strong>Adresse:</strong> {{randomUser.location.street.number}} {{randomUser.location.street.name}}
+        {{randomUser.location.city}}</div>
+      <div><strong>Code postal:</strong> {{randomUser.location.postcode}}</div>
+      <div><strong>Etat:</strong> {{randomUser.location.state}}</div>
+      <div><strong>Pays:</strong> {{randomUser.location.country}}</div>
     </div>
   </div>
-
-  <div class="row m-0 pb-1 p-0 cardBottom rounded">
-    <div><strong>Email:</strong> {{randomUser.email}}</div>
-    <div><strong>Tel:</strong> {{randomUser.cell}}</div>
-    <div><strong>Adresse:</strong> {{randomUser.location.street.number}} {{randomUser.location.street.name}}
-      {{randomUser.location.city}}</div>
-    <div><strong>Code postal:</strong> {{randomUser.location.postcode}}</div>
-    <div><strong>Etat:</strong> {{randomUser.location.state}}</div>
-    <div><strong>Pays:</strong> {{randomUser.location.country}}</div>
-  </div>
-
 </div>
+
+
+
+<ng-template #showPro>
+  <button type="button" class="me-2 btn btn-outline-primary" (click)="eraseProfil(saveProfil)">Erase all Profil</button>
+
+  <div *ngFor="let profil of saveProfil">
+
+    <div class="row mt-2 p-0 border border-primary rounded cardId">
+      <div class="row m-0 p-0 text-center cardUpper"><strong>République de moi</strong></div>
+      <div class="m-2 p-0 row ">
+        <div class=" rounded col-4 p-0">
+          <img class="rounded" src="{{profil.picture.large}}" alt="">
+        </div>
+        <div class=" col-8 ps-2">
+          <div><strong>Civilité:</strong></div>
+          <div>{{profil.name.title}}
+            {{profil.name.first}}
+            {{profil.name.last}}</div>
+          <div><strong>Date de naissance:</strong></div>
+          <div>{{profil.dob.date | date }};
+            {{profil.dob.age}} ans</div>
+        </div>
+      </div>
+      <div class="row m-0 pb-1 p-0 cardBottom rounded">
+        <div><strong>Email:</strong> {{profil.email}}</div>
+        <div><strong>Tel:</strong> {{profil.cell}}</div>
+        <div><strong>Adresse:</strong> {{profil.location.street.number}} {{profil.location.street.name}}
+          {{profil.location.city}}</div>
+        <div><strong>Code postal:</strong> {{profil.location.postcode}}</div>
+        <div><strong>Etat:</strong> {{profil.location.state}}</div>
+        <div><strong>Pays:</strong> {{profil.location.country}}</div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</ng-template>
+
+
+<!-- <div><strong>Civilité:</strong></div>
+    <div>{{profil.gender}}
+      {{profil.name.first}}
+      {{profil.name.last}}</div>
+    <div><strong>Date de naissance:</strong></div>
+    <div>{{profil.dob.date | date }};
+      {{profil.dob.age}} ans</div>
+  </div> -->

@@ -17,6 +17,8 @@ import {
 export class RandomUserComponent implements OnInit {
 
   randomUser: ApiRandomUser | undefined;
+  saveProfil: Array < ApiRandomUser > = [];
+  show: boolean = false;
 
   constructor(private apiRequestService: ApiRequestService) {}
 
@@ -33,5 +35,26 @@ export class RandomUserComponent implements OnInit {
     this.apiRequestService.getRandomUser().subscribe((jsonResponse) => {
       this.randomUser = jsonResponse.results[0]
     });
+  }
+
+  savedProfil(randomUser: ApiRandomUser) {
+    this.saveProfil.push(randomUser);
+    alert('Profil sauvé!');
+    console.log(this.saveProfil);
+  }
+
+  showProfil() {
+
+    if (this.show === false) {
+      this.show = true;
+
+    } else {
+      this.show = false
+    }
+    console.log(this.show);
+  }
+
+  eraseProfil(saveProfil: Array < ApiRandomUser >){
+    this.saveProfil = [];
   }
 }
