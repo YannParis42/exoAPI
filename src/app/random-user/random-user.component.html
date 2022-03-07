@@ -4,16 +4,13 @@
   <button type="button" class="me-2 mb-2 btn btn-outline-primary" (click)="showProfil()">Show saved profil</button>
 </div>
 
-
 <div *ngIf="!this.show; else showPro">
   <div *ngIf="randomUser" class="row mt-2 p-0 border border-primary rounded cardId">
-
-
     <div class="row m-0 p-0 text-center cardUpper"><strong>République de moi</strong></div>
-
     <div class="m-2 p-0 row ">
       <div class=" rounded col-4 p-0">
         <img class="rounded" src="{{randomUser.picture.large}}" alt="">
+        <fa-icon class="heart" [icon]="faHeart" (click)="savedProfil(randomUser)" alt="Sauver le profil"></fa-icon>
       </div>
       <div class=" col-8 ps-2">
         <div><strong>Civilité:</strong></div>
@@ -39,9 +36,8 @@
 </div>
 
 
-
 <ng-template #showPro>
-  <button type="button" class="me-2 btn btn-outline-primary" (click)="eraseProfil(saveProfil)">Erase all Profil</button>
+  <button type="button" class="me-2 btn btn-outline-primary" (click)="eraseProfil(saveProfil)">Erase all Profil <fa-icon class="heart" [icon]="faCrossHairs"></fa-icon></button>
 
   <div *ngFor="let profil of saveProfil">
 
@@ -71,20 +67,7 @@
         <div><strong>Pays:</strong> {{profil.location.country}}</div>
       </div>
     </div>
-
   </div>
 
 
-
-
 </ng-template>
-
-
-<!-- <div><strong>Civilité:</strong></div>
-    <div>{{profil.gender}}
-      {{profil.name.first}}
-      {{profil.name.last}}</div>
-    <div><strong>Date de naissance:</strong></div>
-    <div>{{profil.dob.date | date }};
-      {{profil.dob.age}} ans</div>
-  </div> -->

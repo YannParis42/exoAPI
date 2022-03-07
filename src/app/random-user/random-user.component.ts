@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { faHeart, faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 import {
   ApiRandomUser
 } from 'src/models/api-random user/api-random-user';
@@ -15,6 +16,11 @@ import {
   styleUrls: ['./random-user.component.scss']
 })
 export class RandomUserComponent implements OnInit {
+
+  //Icone FontAwesome
+  faHeart = faHeart;
+  faCrossHairs = faCrosshairs;
+  
 
   randomUser: ApiRandomUser | undefined;
   saveProfil: Array < ApiRandomUser > = [];
@@ -44,13 +50,13 @@ export class RandomUserComponent implements OnInit {
   }
 
   showProfil() {
+    this.show = !this.show;
+    // if (this.show === false) {
+    //   this.show = true;
 
-    if (this.show === false) {
-      this.show = true;
-
-    } else {
-      this.show = false
-    }
+    // } else {
+    //   this.show = false
+    // }
     console.log(this.show);
   }
 
